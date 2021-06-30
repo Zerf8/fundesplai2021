@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .rojo{
+            color:red;
+        }
+    </style>
+
+</head>
+<body>
+    <div id="cuerpoPagina"></div>
+
+    <script>
+        let multiplo=parseInt(prompt("Escoge número múltiplo"));
+        let numTope=parseInt(prompt("Escoge número tope"));
+
+        for (i=0;i<=numTope;i=i+multiplo){
+            if (i%2==0){
+                document.getElementById("cuerpoPagina").innerHTML+=
+                                "<span class='rojo'>" + i + "</span><br>";                
+            }    
+            else 
+            {
+                document.getElementById("cuerpoPagina").innerHTML+=i + "<br>";
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Exercici 9. span class  </title>
+    <meta charset="UTF-8">
+    <style>
+        .verde {
+            color:green;
+        }
+
+        .rojo {
+            color:red;
+        }
+
+    </style>
+</head>    
+<body id="cuerpoPagina"">
+    <button onclick="insertarNombres()">Insertar Nombre</button>
+
+    <h3 id="listaNombres"><span class="verde">Julián</span></h3>
+    
+    <script>
+        function insertarNombres() {
+            let listadoNombres = document.getElementById("listaNombres").innerHTML;
+            let nuevoNombre = prompt("Escribe un nombre");
+
+            if (nuevoNombre == "Felipe"){
+                document.getElementById("listaNombres").innerHTML= listadoNombres + 
+                    "<br><span class=\"rojo\">" + nuevoNombre +"</span>";
+
+            }
+            else
+            {
+                document.getElementById("listaNombres").innerHTML +=
+                    "<br><span class=\"verde\">" + nuevoNombre +"</span>";
+            }
+
+            
+        }
+    </script>
+
+</body>
+
+
+</html>

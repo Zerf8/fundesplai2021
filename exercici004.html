@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Exercici 4. Escollir THEME i contadors</title>
+    <meta charset="UTF-8">
+
+</head>    
+<body id="cuerpoPagina">
+    <h1>ESCOGE EL TEMA </h1>
+    <h2>Veces escogido DARK THEME</h2>
+    <h3 id="contDark">0</h3>
+    <h2>Veces escogido LIGHT THEME</h2>
+    <h3 id="contLight">0</h3>
+    <h2>Veces escogido PINK THEME</h2>
+    <h3 id="contPink">0</h3>
+
+
+    <h2>TOTAL CAMBIOS THEME</h2>
+    <h3 id="contTotalCambiosTheme">0</h3>
+
+    <button type="button" onclick="ponerDarkTheme()">DARK THEME</button>
+    <button type="button" onclick="ponerLightTheme()">LIGHT THEME</button>
+    <button type="button" onclick="ponerPinkTheme()">PINK THEME</button>
+
+    <script>
+        //lo que no está en funciones sólo entrará una vez, al cargar la página
+        //inicializo variables
+        let contadorDarkTheme=0;
+        let contadorLightTheme=0;
+        let contadorPinkTheme=0;
+        let contadorTotal=0;
+
+        function ponerDarkTheme(){
+            document.getElementById("cuerpoPagina").style.backgroundColor="black";
+            document.getElementById("cuerpoPagina").style.color="white";
+            contadorDarkTheme++; // contadorDarkTheme = contadorDarkTheme + 1;
+           // console.log(contadorDarkTheme); 
+            document.getElementById("contDark").innerHTML=contadorDarkTheme;
+
+            sumarTotal(); //llamo a la función
+        }        
+
+        function ponerLightTheme(){
+            document.getElementById("cuerpoPagina").style.backgroundColor="white";
+            document.getElementById("cuerpoPagina").style.color="black";
+            contadorLightTheme++; // contadorDarkTheme = contadorDarkTheme + 1;
+           // console.log(contadorDarkTheme); 
+            document.getElementById("contLight").innerHTML=contadorLightTheme;
+
+            sumarTotal(); //llamo a la función
+        }                
+        
+        function ponerPinkTheme(){
+            document.getElementById("cuerpoPagina").style.backgroundColor="pink";
+            document.getElementById("cuerpoPagina").style.color="white";
+            contadorPinkTheme++; // 
+            document.getElementById("contPink").innerHTML=contadorPinkTheme;
+
+            sumarTotal(); //llamo a la función
+        }   
+
+        function sumarTotal(){
+            contadorTotal++; //contadorTotal=contadorTotal + 1;
+            document.getElementById("contTotalCambiosTheme").innerHTML=contadorTotal;
+        }
+   
+    </script>
+
+</body>
+
+
+</html>

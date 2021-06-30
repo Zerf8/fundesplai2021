@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PIEDRA PAPEL O TIJERA</title>
+
+    <style>
+ 
+        #eleccionPPT img {
+             border:solid 5px;
+             border-radius: 8px;
+        }
+
+        #textoGanador { font-size:80px;
+                        color:red;
+                    }
+
+         a:link {
+            color: red;
+            }
+
+        a:visited {
+        color:black;
+        }
+
+        /* mouse over link */
+        a:hover {
+        color: black;
+        }
+        #eleccionPPT img{
+            height:100px;
+            width:100px;
+            opacity: 0.4;
+        }     
+
+
+        #eleccionPPT img:hover{
+            height:120px;
+            width:120px;
+            opacity: 1.0;
+        }     
+
+
+
+
+    </style>
+</head>
+<body>
+    <h1>PIEDRA, PAPEL O TIJERA</h1>
+
+    <div id="botonInicio"><button id="inicio" onclick="iniciarJuego()">INICIAR JUEGO</button></div>
+
+    <div id="marcador" >
+        HUM<div id="marcadorHum"></div>
+        COM<div id="marcadorCom"></div>
+    </div>
+    <div id="eleccionPPT">
+        <h2>ELIGE TU JUGADA</h2>
+        <a href="#" ><img src="./img/ppt1.png" height="100px" width="100px" onclick="compararJugada(1)"></a>
+        <a href="#" ><img src="./img/ppt2.png" height="100px" width="100px" onclick="compararJugada(2)"></a>
+        <a href="#" ><img src="./img/ppt3.png" height="100px" width="100px" onclick="compararJugada(3)"></a>        
+    </div>
+
+    <div id="resultado"></div>
+    <div id="textoJugada"></div>
+    <div id="textoGanador"></div>
+
+    <script>
+        let numVidasHum;
+        let numVidasCom;
+        let txtMarcador;
+        let txtResultado;
+        let txtGanador;
+        let numJugadaHum;
+        let numJugadaCom;
+        document.getElementById("eleccionPPT").style.display="none";
+        document.getElementById("marcador").style.display="none";
+        document.getElementById("botonInicio").style.display="block";
+
+        function iniciarJuego(){
+            inicializar();
+            mostrarCorazones(numVidasHum, "marcadorHum");
+            mostrarCorazones(numVidasCom, "marcadorCom"); 
+        }
+        
+        function inicializar(){
+            document.getElementById("eleccionPPT").style.display="block";
+            document.getElementById("marcador").style.display="block";            
+            document.getElementById("marcador").style.display="block";            
+            document.getElementById("botonInicio").style.display="none";
+            document.getElementById("resultado").innerHTML="";
+            document.getElementById("textoJugada").innerHTML="";    
+            document.getElementById("textoGanador").innerHTML="";                
+               
+            txtMarcador="";
+            txtResultado="";     
+            numVidasHum=5;
+            numVidasCom=5;
+        }
+
+        function mostrarCorazones(numVidas, divMarcador ){
+            txtMarcador="";
+            for (i=0; i<numVidas;i++) {
+                txtMarcador+='<img src="./img/corazon.png" height="15px" width="15px">';
+            }
+            document.getElementById(divMarcador).innerHTML=txtMarcador;
+        }
+        function compararJugada(numJugada) {
+            numJugadaHum=numJugada;
+            sortearJugadaCom();
+            mostrarTextoJugada();
+            mostrarImagenesJugada();
+            comprobarGanador();
+        }
+
+        function sortearJugadaCom(){
+            numJugadaCom=Math.floor((Math.random()*3)+1);
+            console.log(numJugadaCom);
+        }
+
+        function mostrarImagenesJugada(){
+            txtResultado='<img src="./img/ppt'+numJugadaHum+'.png" height="200px" width="200px">';
+            txtResultado+='<img src="./img/ppt'+numJugadaCom+'.png" height="200px" width="200px">';            
+            document.getElementById("resultado").innerHTML=txtResultado;
+                    
+        }
+
+        function mostrarTextoJugada(){
+            if (numJugadaHum == 1) {
+                if (numJugadaCom == 1) {
+                    txtJugada="Piedra Empata Contra Piedra";
+                }
+                if (numJugadaCom == 2) {
+                    txtJugada="Piedra Pierde Contra Papel";
+                    restarVida("hum");
+                }
+                if (numJugadaCom == 3) {
+                    txtJugada="Piedra Gana a Tijera";
+                    restarVida("com");                    
+                }
+            } 
+            
+            if (numJugadaHum == 2) {
+                if (numJugadaCom == 1) {
+                    txtJugada="Papel Gana a Piedra";
+                    restarVida("com");
+                }
+                if (numJugadaCom == 2) {
+                    txtJugada="Papel Empata Contra Papel";
+                }
+                if (numJugadaCom == 3) {
+                    txtJugada="Papel Pierde Contra Tijera";
+                    restarVida("hum");                    
+                }
+            } 
+
+            if (numJugadaHum == 3) {
+                if (numJugadaCom == 1) {
+                    txtJugada="Tijera Pierde Contra Piedra";
+                    restarVida("hum");
+                }
+                if (numJugadaCom == 2) {
+                    txtJugada="Tijera Gana a Papel";
+                    restarVida("com");
+                }
+                if (numJugadaCom == 3) {
+                    txtJugada="Tijera Empata Contra Tijera";
+                }
+            }             
+
+            document.getElementById("textoJugada").innerHTML=txtJugada;
+        }
+        function restarVida(perdedor){
+            if (perdedor =="hum") {
+                numVidasHum--;
+                mostrarCorazones(numVidasHum, "marcadorHum"); 
+            }
+            if (perdedor =="com") {
+                numVidasCom--;
+                mostrarCorazones(numVidasCom, "marcadorCom"); 
+            }
+        }
+
+        function comprobarGanador(){
+            if (numVidasCom==0) {
+                txtGanador="GANASTE";
+            }
+            if (numVidasHum==0) {
+                txtGanador="PERDISTE";
+            }
+
+            if (numVidasHum == 0 || numVidasCom == 0){
+                document.getElementById("eleccionPPT").style.display="none";
+                document.getElementById("botonInicio").style.display="block";  
+                document.getElementById("textoGanador").innerHTML=txtGanador;      
+            }
+        }
+
+    </script>
+</body>
+</html>

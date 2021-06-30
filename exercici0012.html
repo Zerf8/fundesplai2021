@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>LISTA ALIMENTOS DISPONIBLES</h1>
+
+    <div id="divListaAlimentos">    
+    </div>
+
+    <h2>LISTA DE LA COMPRA</h2>
+    <div id="divListaCompra">    
+    </div>
+    <script>
+        let arrListaCompra=[];
+        let arrAlimentos=["peras", "manzanas", "tomates", "pomelos"];
+        numAlimentos=arrAlimentos.length;
+        let txt="<ul>";
+        for (i=0; i < numAlimentos; i++) {
+            txt+="<li>" + arrAlimentos[i] ;
+            txt+=" <button onclick='comprar("+ i +")''>COMPRAR</button>";
+            txt+="</li>";
+        }
+        txt+="</ul>";
+        document.getElementById("divListaAlimentos").innerHTML=txt;
+
+
+        function comprar(alimentoComprado){
+            arrListaCompra.push(arrAlimentos[alimentoComprado]);
+            mostrarListaCompra();
+        }
+
+        function mostrarListaCompra(){
+            numListaCompra = arrListaCompra.length;
+            txtCompra = "<ul>";
+
+            for (j=0; j<numListaCompra;j++){
+                txtCompra+="<li>"+ arrListaCompra[j] +"</li>"
+            }    
+                
+            txtCompra+="</ul>";   
+            document.getElementById("divListaCompra").innerHTML=txtCompra;
+ 
+
+        }
+
+      
+
+    </script>
+</body>
+</html>

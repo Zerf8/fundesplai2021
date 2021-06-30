@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Bienvenido a mi Juego</h1>
+    <button type="button" onclick="iniciarJuego()">Jugar</button>
+    <div id="ocultar">
+        <h1>Humano</h1>
+        <div id="vidaHumano"></div>
+        <h1>Computadora</h1>
+        <div id="vidaComputadora"></div>
+
+
+
+        <div id="imagenesPpt">  
+            <img src="./img/ppt1.png" onclick="compararImagenes(1)">
+            <img src="./img/ppt2.png" onclick="compararImagenes(2)">
+            <img src="./img/ppt3.png" onclick="compararImagenes(3)">
+        </div>
+        <div id="miOpcion"></div>
+        <div id="resultado"></div>
+    </div>
+    <script>
+        let opcionComputadora= 0;
+        let numVidasHumano = 5;
+        let numVidasComputadora = 5;
+
+
+        function iniciarJuego() {
+            let usuario = prompt("Nombre de Usuario"); 
+            document.getElementById("ocultar").style.display = "block";
+
+
+            mostrarCorazones();
+        }
+        function compararImagenes(opcionEscogida) {
+            document.getElementById("miOpcion").innerHTML='<img src="./img/ppt'+opcionEscogida+'.png">';
+            crearNumeroAleatorio();
+            if(opcionEscogida==1){
+                if(opcionComputadora==1){
+                    document.getElementById("resultado").innerHTML="Es un Empate";
+                }
+                if(opcionComputadora==2){
+                    document.getElementById("resultado").innerHTML="Lo siento Has Perdido...";
+                numVidasHumano--;
+                }
+                if(opcionComputadora==3){
+                    document.getElementById("resultado").innerHTML="¡Has Ganado!";
+                    numVidasComputadora--;
+                }
+            }   
+            if(opcionEscogida==2){
+                if(opcionComputadora==1){
+                    document.getElementById("resultado").innerHTML="¡Has Ganado!";
+                    numVidasComputadora--;
+                }
+                if(opcionComputadora==2){
+                    document.getElementById("resultado").innerHTML="Es un Empate";
+                }
+                if(opcionComputadora==3){
+                    document.getElementById("resultado").innerHTML="Lo siento Has Perdido...";
+                    numVidasHumano--;
+                }
+            }
+            if(opcionEscogida==3){
+                if(opcionComputadora==1){
+                    document.getElementById("resultado").innerHTML="Lo siento has Perdido";
+                    numVidasHumano--;
+                }
+                if(opcionComputadora==2){
+                    document.getElementById("resultado").innerHTML="¡Has Ganado!";
+                    numVidasComputadora--;
+                }
+                if(opcionComputadora==3){
+                    document.getElementById("resultado").innerHTML="Es un Empate";
+                }
+            }
+            mostrarCorazones();
+        }
+        function crearNumeroAleatorio(){
+            opcionComputadora= Math.floor(Math.random()*3+1);
+            document.getElementById("miOpcion").innerHTML+='<img src="./img/ppt'+opcionComputadora+'.png">';
+            console.log(opcionComputadora);
+        
+        }
+
+        function mostrarCorazones()  {
+            document.getElementById("vidaHumano").innerHTML = "";
+            document.getElementById("vidaComputadora").innerHTML = "";
+
+
+            for(i=0;i<numVidasHumano;i++) {
+                document.getElementById("vidaHumano").innerHTML += "<img src='./img/corazon.png'width='10px' height='10px'>";
+            }
+            for(i=0;i<numVidasComputadora;i++) {
+                document.getElementById("vidaComputadora").innerHTML += "<img src='./img/corazon.png'width='10px' height='10px'>";
+            }
+            comprobarFinJuego();
+        }
+    
+        function comprobarFinJuego() {
+            if(numVidasComputadora==0) {
+                numVidasComputadora = 5;
+                numVidasHumano = 5;
+                document.getElementById("ocultar").style.display = "none";
+
+            }
+            if(numVidasHumano==0) {
+                numVidasComputadora = 5;
+                numVidasHumano = 5;
+                document.getElementById("ocultar").style.display = "none";
+
+            }       
+        }
+
+    </script>
+    
+</body>
+</html>

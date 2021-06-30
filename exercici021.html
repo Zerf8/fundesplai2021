@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEMORY</title>
+
+    <style>
+        img {
+            margin:0px 50px 0px 0px;
+        }
+
+    </style>
+
+</head>
+<body>
+    <div id="numIntentos"></div>
+    <button onclick="iniciarJuego()">INICIAR</button>
+    <div id="espacioImagenes"></div>
+    <script>
+        let arrImagenesInicial=[0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9];
+        //let sorteoImagenes=19;
+        let numAleatorio;
+        let arrOrdenada=[];
+        let contGiro=0;
+        let imagen1;
+        let imagen2;
+        let contAciertos=0;
+        let contIntentos=0;
+
+        function iniciarJuego(){
+            contIntentos=0;
+            document.getElementById("numIntentos").innerHTML="Número Intentos: " + contIntentos;
+            contGiro=0;
+            contAciertos=0;
+            arrOrdenada=[];
+            ordenarArray();
+            mostrarImagenesComodin();
+        }
+
+        function ordenarArray(){
+            for (i=0;i<20;i++) {
+                numAleatorio=Math.floor(Math.random()*arrImagenesInicial.length);
+                arrOrdenada.push(arrImagenesInicial[numAleatorio]);   
+                arrImagenesInicial.splice(numAleatorio, 1);  
+                console.log("num aleatorio " + numAleatorio + "arrImagen " + arrImagenesInicial[numAleatorio]);
+            }    
+            console.log(arrOrdenada);
+
+        }
+
+        function mostrarImagenesComodin(){
+            let txt="";
+            for (i=0;i<=19; i++) {
+                txt+='<span id="posicion'+i+'"><img src="./img/comodin.jpg" id="imagen'+ i +'" onclick="girarCarta('+i+')" height="180px" width="115px"></span>';
+            }
+            document.getElementById("espacioImagenes").innerHTML=txt;
+        }
+
+        function girarCarta(posicionImagen){
+
+            let numImagen=arrOrdenada[posicionImagen];
+       //     document.getElementById("imagen" + posicionImagen).src="./img/imagen"+numImagen+".jpg";
+            document.getElementById("posicion" + posicionImagen).innerHTML='<img src="./img/imagen'+numImagen+'.jpg" id="imagen'+ posicionImagen +'"  height="180px" width="115px">';
+            contGiro++;
+            if (contGiro==1){
+                imagen1=numImagen;
+                posicion1=posicionImagen;
+            }
+            else if (contGiro==2) {
+                contGiro=0;
+                imagen2=numImagen;
+                posicion2=posicionImagen;
+                compararImagenes();
+                contIntentos++;
+                document.getElementById("numIntentos").innerHTML="Número Intentos: " + contIntentos;
+            }
+        }
+
+        function compararImagenes(){
+            if (imagen1 != imagen2) {
+                setTimeout(function(){ ocultarImagenes(); }, 1000);
+            }
+            else
+            {
+                contAciertos++;
+            }
+
+            if (contAciertos == 10) {
+                setTimeout(function(){ alert("GANASTE"); }, 1000);
+            }
+
+        }
+
+        function ocultarImagenes(){
+            document.getElementById("posicion" + posicion1).innerHTML='<img src="./img/comodin.jpg" id="imagen'+ posicion1 +'" onclick="girarCarta('+posicion1+')" height="180px" width="115px">';
+            document.getElementById("posicion" + posicion2).innerHTML='<img src="./img/comodin.jpg" id="imagen'+ posicion2 +'" onclick="girarCarta('+posicion2+')" height="180px" width="115px">';
+
+            //document.getElementById("imagen" + posicion1).src="./img/comodin.jpg";
+           // document.getElementById("imagen" + posicion2).src="./img/comodin.jpg";
+        }
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Exercici 7. IMG PROMPT SRC </title>
+    <meta charset="UTF-8">
+
+</head>    
+<body id="cuerpoPagina">
+        <h1 id="titulo">Datos Personales</h1>
+        <h2 id="resultadoNombre"></h2>
+        <h2 id="resultadoEdad"></h2>
+        <button onclick="pedirDatos()"> Haz click </button>
+        <div>
+            <img id="imagenPrincipal" src="./img/1.jpg">
+        </div>
+
+    
+    <script>
+        function pedirDatos() {
+            let nombre = prompt("Introduzca su nombre");
+            if (nombre == "2" || nombre=="3" || nombre=="4")
+            {
+                document.getElementById("imagenPrincipal").src="./img/" + nombre + ".jpg";
+            }
+            else
+            {
+                document.getElementById("imagenPrincipal").src="./img/1.jpg";
+            }
+        }
+    </script>
+
+</body>
+
+
+</html>

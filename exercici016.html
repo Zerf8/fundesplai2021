@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            text-align: center;
+        }
+        table,tr,th {
+            margin-top: 15px;
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="imagenAleatoria"></h1>
+    <button onclick="cambiarImagen()">MOSTRAR IMAGEN</button>
+    <div id="numAleatorio"></div>
+    <table id="tablaContador">
+
+        
+    </table>
+    <script>
+        let arrContador=[0,0,0,0,0,0,0,0,0,0];
+
+        function cambiarImagen(){
+            let numAleatorio= Math.floor(Math.random() * 10) + 1;
+            document.getElementById("imagenAleatoria").innerHTML = "<img src='./img/"+numAleatorio+".jpg' width='236px' height='314px'>";
+            arrContador[numAleatorio-1]+=1;
+            mostrarContadores();
+        }
+    
+        function mostrarContadores() {
+            let textoContador = "<table>";
+            for (i=1; i<=arrContador.length; i++) {
+                textoContador += "<tr>"+ "<th>" + (i)+ "</th>" + "<th>" + arrContador[i-1] + "</th>";
+            }
+            textoContador += "</table>";
+            document.getElementById("tablaContador").innerHTML = textoContador;
+        }
+
+    </script>
+</body>
+</html>

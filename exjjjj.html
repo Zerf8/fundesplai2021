@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LISTA COMPRA</title>
+</head>
+<body>
+    <h1>LISTA ALIMENTOS EN VENTA</h1>
+    <div id="listaAlimentosVenta">
+    </div>
+
+    <h1>LISTA DE LA COMPRA</h1>
+    <div id="listaCompra">
+    </div>
+    <script>
+        let arrCompra =[];
+        let arrAlimentosVenta = ["Pera", "Manzana", "Kiwi", "Pomelo", "Fresa", "Sandía", "Melón"];
+        let numAlimentosVenta = arrAlimentosVenta.length;
+
+        let txtAlimentosVenta="<ul>";
+        
+        for (i=0;i<numAlimentosVenta;i++){
+            txtAlimentosVenta += "<li>" + arrAlimentosVenta[i]  
+                                    + "<button onclick=\"comprar("+ i + ")\">COMPRAR</button>"
+                                        + "</li>";
+        }
+        txtAlimentosVenta +="</ul>";
+        document.getElementById("listaAlimentosVenta").innerHTML = txtAlimentosVenta;
+
+        function comprar(indiceAlimento) {
+            arrCompra.push(arrAlimentosVenta[indiceAlimento]);
+            
+            let numListaCompra = arrCompra.length;
+
+            let txtListaCompra = "<ul>";
+            for (i=0;i<numListaCompra;i++){
+                
+                txtListaCompra += "<li>" + arrCompra[i] + "</li>";         
+            }
+            
+            txtListaCompra += "</ul>";
+            document.getElementById("listaCompra").innerHTML = txtListaCompra;
+        }
+
+    </script>
+</body>
+</html>

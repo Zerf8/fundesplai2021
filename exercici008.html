@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Exercici 8. sumar restar innerHTML </title>
+    <meta charset="UTF-8">
+
+    <style>
+        .rojo {
+            color:red;
+        }
+
+        .verde {
+            color:green;
+        }
+
+    </style>
+
+</head>    
+<body id="cuerpoPagina" onload="sumarInicial()">
+        <h3 id="totalSuma"></h3>
+        <h3 id="literalTotalSuma"></h3>
+
+        <button onclick="sumarNuevoValor()">Sumar Nuevo Valor</button>
+        <button onclick="restarNuevoValor()">Restar Nuevo Valor</button>
+    
+    <script>
+        function sumarInicial() {
+            let numero1 = parseInt(prompt("Primer Valor"));
+            let numero2 = parseInt(prompt("Segundo Valor"));
+            document.getElementById("totalSuma").innerHTML=(numero1 + numero2);
+            document.getElementById("literalTotalSuma").innerHTML="<span class=\"verde\">" + numero1 + " + " + numero2 + " = " + (numero1 + numero2) + "</span>";
+        }
+
+        function sumarNuevoValor(){
+            let sumaTotal = parseInt(document.getElementById("totalSuma").innerHTML);
+            let nuevoNumero=parseInt(prompt("Escribe Nuevo Número"));
+
+            let resultado=sumaTotal + nuevoNumero;
+            document.getElementById("totalSuma").innerHTML= resultado;
+            document.getElementById("literalTotalSuma").innerHTML+="<br><span class=\"verde\">" + sumaTotal + " + " + nuevoNumero + " = " + resultado + "</span>";
+        }
+            
+        function restarNuevoValor(){
+            let sumaTotal = parseInt(document.getElementById("totalSuma").innerHTML);
+            let nuevoNumero=parseInt(prompt("Escribe Nuevo Número"));
+
+            let resultado=sumaTotal - nuevoNumero;
+            document.getElementById("totalSuma").innerHTML= resultado;
+            document.getElementById("literalTotalSuma").innerHTML+="<br><span class=\"rojo\">" + sumaTotal + " - " + nuevoNumero + " = " + resultado + "</span>";
+        }  
+    </script>
+
+</body>
+
+
+</html>

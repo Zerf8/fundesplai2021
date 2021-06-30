@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+</head>
+
+<body>
+
+<h1>CALCULADORA</h1>
+
+<h2 id="resultado"></h2>
+
+<button type="button" onclick= "calcular(0)">SUMA</button>
+
+<button type="button" onclick= "calcular(1)">RESTA</button>
+
+<button type="button" onclick= "calcular(2)">MULTIPLICAR</button>
+
+<button type="button" onclick= "calcular(3)">DIVIDIR</button>
+
+
+<script>
+
+    function calcular(tipoOperacion)
+    {
+        /* 0-suma
+            1-resta
+            2-multiplica
+            3-divide
+         */   
+
+       if (tipoOperacion == 0)
+       {
+        let primerValor= parseInt(prompt ("Introduce un valor"));
+        let segundoValor= parseInt(prompt ("Introduce un valor"));
+        document.getElementById("resultado").innerHTML= primerValor + "+" + segundoValor + "=" + (primerValor + segundoValor);
+       }
+
+       if (tipoOperacion == 1)
+       {
+        let primerValor= parseInt(prompt ("Introduce un valor"));
+        let segundoValor= parseInt(prompt ("Introduce un valor"));
+        document.getElementById("resultado").innerHTML= primerValor + "-" + segundoValor + "=" + (primerValor - segundoValor);
+       }
+
+       if (tipoOperacion == 2)
+       {
+        let primerValor= parseInt(prompt ("Introduce un valor"));
+        let segundoValor= parseInt(prompt ("Introduce un valor"));
+        document.getElementById("resultado").innerHTML= primerValor + "*" + segundoValor + "=" + (primerValor * segundoValor);
+       }
+
+       if (tipoOperacion == 3)
+       {
+        let primerValor= parseInt(prompt ("Introduce un valor"));
+        let segundoValor= parseInt(prompt ("Introduce un valor"));
+        document.getElementById("resultado").innerHTML= primerValor + "/" + segundoValor + "=" + (primerValor / segundoValor);
+       }
+    }
+
+
+
+
+</script>
+
+</body>
+</html>
+
+

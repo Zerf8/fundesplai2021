@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Exercici 6. PROMPT IF PARSEINT</title>
+    <meta charset="UTF-8">
+
+</head>    
+<body id="cuerpoPagina">
+        <h1 id="titulo">Datos Personales</h1>
+        <h2 id="resultadoNombre"></h2>
+        <h2 id="resultadoEdad"></h2>
+        <button onclick="pedirDatos()"> Haz click </button>
+    
+    <script>
+        function pedirDatos() {
+    let nombre = prompt("Introduzca tu nombre");
+    if(nombre == "zerf" || nombre == "matteo" || nombre == "joseph" || nombre == "alejandro") {
+        document.getElementById("resultadoNombre").innerHTML = "Hola " + nombre + " te conozco";
+    } else {
+        document.getElementById("resultadoNombre").innerHTML = "Hola " + nombre + " no te conozco";
+    }
+
+    let edad = parseInt(prompt("Introduzca tu edad"));
+    if(edad >= 18) {
+        document.getElementById("resultadoEdad").style.color = "green";
+        document.getElementById("resultadoEdad").innerHTML = "Tienes " + edad + " años, eres mayor de edad";
+    } else {
+        document.getElementById("resultadoEdad").style.color = "red";
+        document.getElementById("resultadoEdad").innerHTML = "Tienes " + edad + " años, eres menor de edad";
+    }
+        }
+    </script>
+
+</body>
+
+
+</html>

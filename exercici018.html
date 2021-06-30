@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahorcado</title>
+    <style>
+        #palabraGuiones{
+            font-size:80px;
+            color:red;
+            padding:20px;
+        }
+
+        button{
+            padding:5px;
+            margin:10px;
+
+        }
+    </style>
+
+</head>
+<body>
+
+    <button onclick="iniciarJuego()">JUGAR AHORCADO</button>
+
+
+
+    <div id="palabraGuiones"></div>
+
+    <div id="botonesLetras">  </div>
+
+    <script>
+
+        //ARRAY CON PALABRAS
+        let arrPalabras=["ahorcado", "hastio", "javascript", "proyector", "islote", "paranormal", "paracaidas", "paraiso", "ahora", "queseria"];
+        let arrAbecedario=["A","B","C","D","E","F","G","H","I","J","K","L","M","N","Ñ","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
+        let palabraJuego="";
+        let numLetras;
+        function iniciarJuego(){
+            document.getElementById("palabraGuiones").innerHTML="";        
+
+            obtenerPalabra();
+            ocultarPalabra();
+            crearBotonesLetras();
+            //añado comentario
+        }
+
+        function obtenerPalabra(){
+            let numPalabras = arrPalabras.length;
+            let numAletorio=(Math.floor(Math.random() * numPalabras));
+            palabraJuego = arrPalabras[numAletorio];
+            console.log(palabraJuego);
+        }
+
+        function ocultarPalabra(){
+            numLetras=palabraJuego.length;
+            console.log("num letras " + numLetras);
+
+            for (i=0;i<numLetras;i++){
+                document.getElementById("palabraGuiones").innerHTML+="<span id='guion" + i +"'>_ </span>";        
+            }
+
+        }
+
+        function crearBotonesLetras(){
+            let numAbecedario = arrAbecedario.length;
+
+            for (i=0;i<numAbecedario; i++){
+                console.log(arrAbecedario[i]);
+                document.getElementById("botonesLetras").innerHTML+="<button id=\""+arrAbecedario[i]+"\" onclick=\"compararLetra('"+arrAbecedario[i]+"')\">"+arrAbecedario[i]+"</button>";
+            }
+        }
+
+        function compararLetra(letraEscogida){
+            //una vez seleccionada la letra la pongo disabled
+            document.getElementById(letraEscogida).disabled = true; 
+
+            for (i=0;i<numLetras; i++) {
+                if (palabraJuego.charAt(i)== letraEscogida){
+                    alert ("está");
+                    
+                }
+            }
+
+        }
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADIVINAR NÑUMERO DEL 1 AL 100</title>
+</head>
+<body>
+<h1 id=""></h1>
+<div id="contadorIntentos"></div>
+<div id="contadorRecord"></div>
+
+<button onclick="iniciarJuego()">INICIAR</button>
+    <script>
+        let numUsuario;
+        let numAletorio;
+        let contadorIntentos=0;
+        let contadorRecord=100;
+
+        function iniciarJuego() {
+
+            contadorIntentos=0;
+            obtenerNumAletorio();
+            do{ 
+                preguntarNum(); 
+            } while (numAletorio != numUsuario);
+            
+
+        }
+
+        function obtenerNumAletorio() {
+            numAletorio=Math.floor(Math.random()*100+1);
+            console.log(numAletorio);
+
+        }
+
+        function preguntarNum() {
+            numUsuario = prompt("Dime un número del 1 al 100");
+            contadorIntentos = contadorIntentos + 1;
+            document.getElementById("contadorIntentos").innerHTML= "Llevas "+contadorIntentos+" intentos.";
+
+            if (numUsuario==numAletorio){
+                alert("Has ganado!");
+                mostrarRecord();
+            }
+            else if (numUsuario<numAletorio){
+                alert ("El número secreto es mayor");
+            }
+            else {
+                alert("El número secreto es menor");
+            }
+
+        }
+
+        function mostrarRecord(){
+            console.log("cont intentos: " + contadorIntentos + "contRecords: " + contadorRecord);
+            if(contadorIntentos<contadorRecord){
+                contadorRecord=contadorIntentos;
+                console.log(contadorRecord);
+                document.getElementById("contadorRecord").innerHTML = contadorRecord;
+            }
+        }
+    </script>
+</body>
+</html>

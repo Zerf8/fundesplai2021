@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Cambiar fondo h1</title>
+</head>
+<body> 
+    <h1 id="tituloPrincipal">TÍULO DEL EJERCICIO</h1>
+    <button id="BotonCambioColor" type="button" onclick="ponerTituloFondoRojo()" 
+        ondblclick="ponerTituloFondoAzul()" onmouseover="cambiarColorBoton()" onmouseout="quitarColorBoton()">CAMBIAR FONDO H1</button>
+
+<script>
+    function ponerTituloFondoRojo(){
+        document.getElementById("tituloPrincipal").style.backgroundColor="red";
+    }
+
+    function ponerTituloFondoAzul(){
+        document.getElementById("tituloPrincipal").style.backgroundColor="blue";
+    }
+    function cambiarColorBoton(){
+        document.getElementById("BotonCambioColor").style.backgroundColor="yellow";
+    }
+    function quitarColorBoton(){
+        document.getElementById("BotonCambioColor").style.backgroundColor="";
+    }
+</script>
+
+</body>
+</html

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>ALUMNO ALEATORIO</title>
+</head>
+<body> 
+    <h1>ALUMNO ALEATORIO</h1>
+    <div>
+        <button type="button" id="botonAleatorio" onclick="obtenerAlumnoAleatorio()">ALUMNO ALEATORIO</button>
+        <h1 id="tituloAlumno"></h1>
+    </div>
+
+    <script>
+
+        function obtenerAlumnoAleatorio(){
+            let arrAlumnos=["ANA", "DANI", "SANTI", "MATTEO", "ADRIAN", "ALEJANDRO", "CARLOS", 
+                                "KEVIN", "NARA", "ARMANDO", "KAREN", "JUAN CARLOS"];
+            
+            let numAleatorio= Math.floor(Math.random() * (12));
+            //alert(numAleatorio);
+            document.getElementById("tituloAlumno").innerHTML=arrAlumnos[numAleatorio];
+        }
+
+        
+
+    </script>
+
+</body>
+</html

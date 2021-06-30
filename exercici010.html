@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Exercici 9. span class  </title>
+    <meta charset="UTF-8">
+    <style>
+        .verde {
+            color:green;
+        }
+
+        .rojo {
+            color:red;
+        }
+
+    </style>
+</head>    
+<body id="cuerpoPagina"">
+    <body id="cuerpoPagina"">
+    <button onclick="operar('suma')">+</button>
+    <button onclick="operar('resta')">-</button>
+    <button onclick="operar('multiplicacion')">x</button>
+    <button onclick="operar('division')">/</button>
+
+    <h3 id="resultado"></h3>
+    
+    <script>
+        function operar(operacion) {
+            let numero1=parseInt(prompt("Escribe un número"));
+            let numero2=parseInt(prompt("Escribe otro número"));
+            let resultado; 
+            if (operacion == "suma") {
+                resultado = numero1 + numero2; 
+            }
+            if (operacion == "resta") {
+                resultado = numero1 - numero2; 
+            }
+            if (operacion == "multiplicacion") {
+                resultado = numero1 * numero2; 
+            }
+            if (operacion == "division") {
+                resultado = numero1 / numero2; 
+            }            
+
+            document.getElementById("resultado").innerHTML=resultado;
+        }
+    </script>
+
+</body>
+
+
+</html>

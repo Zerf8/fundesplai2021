@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruleta</title>
+</head>
+<body onload="iniciarJuego()">
+    <h1>Apuesta</h1>
+    <div id="textoSaldo"></div>
+    <div id="textoSorteo"></div>
+    
+    <button type="button" onclick="apostar()">Apostar</button>
+
+
+    <script>
+        let nombreUsuario; //al definir la variable fuera se convierte en variable global
+        let saldo=0;
+        let dineroApostado=0;
+        let numeroGanador;
+        let numeroApostado;
+
+        function iniciarJuego(){
+            nombreUsuario=prompt("Introduce tu nombre: ");
+            saldo=parseInt(prompt("Introduce saldo: "));
+            mostrarSaldo();
+        }
+
+        function mostrarSaldo(){
+            document.getElementById("textoSaldo").innerHTML="Hola " + nombreUsuario + " Tu Saldo es de " + saldo + " euros";
+        }
+
+        function apostar() {
+
+            do {
+                preguntarDineroApostado();
+            } while (dineroApostado > saldo); //se repite hasta que el dinero apostado sea menor o igual al saldo
+
+            restarDineroApostado();
+
+            preguntarNumeroApostado();
+            sortear();
+            
+            if (numeroApostado == numeroGanador) {
+                sumarPremio();
+                mostrarSaldo();
+                alert("HAS GANADO");
+
+            }
+
+        }
+
+        function preguntarDineroApostado(){
+            dineroApostado=parseInt(prompt("Introduce cuánto quieres apostar: "));
+            if (dineroApostado > saldo) {
+                alert("Tu saldo es de " + saldo + " no puedes apostar más");
+
+            }
+        }
+
+        function preguntarNumeroApostado() {
+            numeroApostado=parseInt(prompt("Qué número apuestas (1-10): "));
+
+
+        }
+
+        function restarDineroApostado(){
+            saldo = saldo - dineroApostado;
+            mostrarSaldo();
+        }
+
+        function sortear(){
+            numeroGanador = Math.floor(Math.random() *10 +1);
+            document.getElementById("textoSorteo").innerHTML = "Número Ganador " + numeroGanador;
+
+        }
+
+        function sumarPremio() {
+            saldo = saldo + (dineroApostado * 8);
+        }
+
+    </script>
+
+</body>
+</html>

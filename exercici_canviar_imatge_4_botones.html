@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>Cambiar imágenes</title>
+</head>
+<body> 
+    <div>
+        <img id="imagenBombilla" src="./img/pic_bulboff.gif">
+        <button type="button" onclick="mostrarBombillaEncendida()">ENCENDER</button>
+        <button type="button" onclick="mostrarBombillaApagada()">APAGAR</button>
+
+    </div>
+
+    <script>
+        function mostrarBombillaEncendida(){
+            document.getElementById("imagenBombilla").src="./img/pic_bulbon.gif";
+        }
+
+        function mostrarBombillaApagada(){
+            document.getElementById("imagenBombilla").src="./img/pic_bulboff.gif";
+        }
+
+    </script>
+
+</body>
+</html

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Exercici 5. PROMPTS</title>
+    <meta charset="UTF-8">
+
+</head>    
+<body id="cuerpoPagina">
+        <h1 id="titulo">Aqui Aparece tu nombre</h1>
+        <button onclick="cambiarForma()"> Haz click </button>
+    
+    <script>
+        function cambiarForma() {
+            let nombre =prompt("Introduce tu nombre ");
+            let edad = prompt("Introduce tu edad");
+            document.getElementById("titulo").innerHTML= "Hola "+ nombre + " tienes "+edad+" años";
+            
+            let colorFondo = prompt("Introduce el color de fondo");
+            document.getElementById("cuerpoPagina").style.backgroundColor=colorFondo;
+            
+            let tamanyoFuente=prompt("Introduce el tamaño de fuente");
+            document.getElementById("titulo").style.fontSize=tamanyoFuente+"px";
+
+        
+        }
+    </script>
+
+</body>
+
+
+</html>

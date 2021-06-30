@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahorcado</title>
+
+</head>
+
+<body>
+    
+    <div id="imagenAhorcado"></div>
+    <div id="palabraGuiones"></div>
+    <div id="botonesLetras"></div>
+    <button onclick="iniciarJuego()">JUGAR</button>
+    
+    <select id="idioma" onchange="seleccionarIdioma()">
+        <option value="" selected></option>
+        <option value="catala">CATALÀ</option>
+        <option value="español">ESPAÑOL</option>
+        <option value="english">ENGLISH</option>
+
+      </select>
+
+
+    
+    <script>
+        let arrPalabras = ["trabalenguas", "cafeteria", "cocina", "coche"];
+        let arrAbecedario = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "ñ", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+        let palabraJuego;
+        let textoBotones="";
+        let contadorFallos= 0;
+
+        function seleccionarIdioma(){
+            let idioma= document.getElementById("idioma").value;
+            alert(idioma);
+            
+            switch(idioma) {
+                case "catala":
+                    arrAbecedario = ["a", "b", "c","ç", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",  "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+                    arrPalabras = ["drecera", "ganapia", "cuina", "cotxe"];
+                    break;
+                case "español":
+                    arrPalabras = ["trabalenguas", "cafeteria", "cocina", "coche"];
+                    arrAbecedario = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "ñ", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+                    break;
+                case "english":
+                    arrPalabras = ["skills", "shift", "coffee", "car"];
+                    arrAbecedario = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+                    break;
+                default:
+                    // code block
+             }
+        }
+        
+        function iniciarJuego() {
+            inicializar();
+            obtenerPalabra();
+            ocultarPalabra();
+            crearBotonesLetras();
+            
+        }
+
+        function inicializar(){
+            document.getElementById("imagenAhorcado").innerHTML="";
+            document.getElementById("palabraGuiones").innerHTML="";
+            document.getElementById("botonesLetras").innerHTML="";
+            textoBotones="";
+            contadorFallos=0;
+
+        }
+
+        function obtenerPalabra() { //ana
+            let numPalabras = arrPalabras.length;
+            let numAleatorio = Math.floor(Math.random() * numPalabras);
+            console.log(numAleatorio);
+            palabraJuego = arrPalabras[numAleatorio];
+            console.log(palabraJuego);
+        }
+
+        function ocultarPalabra() {
+            let palabraGuiones="";
+            document.getElementById("palabraGuiones").innerHTML=" ";
+            for (let i = 0; i < palabraJuego.length; i++) {
+                palabraGuiones += "<span id='guion"+i+"'> _ </span>";
+            }
+            document.getElementById("palabraGuiones").innerHTML = palabraGuiones;
+        }
+
+        function crearBotonesLetras(){
+            for(i = 0; i < arrAbecedario.length; i++){
+                textoBotones += '<button id="'+arrAbecedario[i]+'" onclick="compararLetra(\''+arrAbecedario[i]+'\')">'+arrAbecedario[i]+'</button>';
+                
+            }
+            document.getElementById("botonesLetras").innerHTML = textoBotones;
+
+
+        }
+        function compararLetra(letraEscogida) {
+            let letraExiste=false;
+            document.getElementById(letraEscogida).disabled=true;
+            for(i=0; i<palabraJuego.length;i++) {
+                if(palabraJuego.charAt(i)==letraEscogida) {
+                    letraExiste=true;
+                    document.getElementById("guion"+i).innerHTML=letraEscogida;
+                }
+            }
+            if(letraExiste==false) {
+
+                cambiarImagen();
+            }
+            function cambiarImagen() {
+
+                contadorFallos = contadorFallos + 1;
+                document.getElementById("imagenAhorcado").innerHTML= '<img src="./img/ahorcado'+ contadorFallos + '.jpg">';
+
+                if(contadorFallos == 6){
+                    alert("perdiste lol");
+                    iniciarJuego();
+                }
+
+            }
+
+        }
+
+    </script>
+</body>
+
+</html>
